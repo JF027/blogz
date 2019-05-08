@@ -4,15 +4,24 @@
 
     <h1>Build a Blog!</h1>
 
-    {% if tasks|length == 0 %}
+    {% if blogs|length == 0 %}
     <p>No blogs yet</p>
     {% else %}
 
-      
+    {% for new_blog in blogs %}
+    <hr />
+    
+    <form method="POST" action="/delete-blog" style="display:inline-block;">
+        <h2><a href="/blog" method="get">{{new_blog.title}}</a></h2>
+        <p>{{new_blog.body}}</p>
+        <input type="hidden" name="blog-id" value="{{blog.id}}"/>
+        <input type="submit" value="Delete!"/>
+    </form>
+    {% endfor %}
 
     {% endif %}
 
     <hr />
-
+    
 
 {% endblock %}
