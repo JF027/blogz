@@ -33,20 +33,23 @@ def newpost():
     if request.method == 'POST':
         blog_title = request.form['blog_title']
         blog_body = request.form['blog_body']
-        new_blog = Blog(blog_title, blog_body)
-
-        db.session.add(new_blog)
-        db.session.commit()
-
+        
         blog_title_error = ""
         blog_body_error = ""
 
-        if not blog_title:
+        if blog_title == "":
             blog_title_error = "I need a title."
-        if not blog_body:
+        if blog_body == "":
             blog_body_error = "Where the post at?"
-        if blog_title_error or blog_body_error:
-            return redirect('/newpost.html', blog_body=blog_body, blog_body_error=blog_body_error, blog_title=blog_title, blog_title_error=blog_title_error)
+
+        if not blog_body_error and not blog_title_error:
+            new_blog = Blog(blog_title, blog_body)
+            db.session.add(new_blog)
+            db.session.commit()
+            return redirect('/blog')
+
+        return render_template('newpost.html', blog_body_error=blog_body_error, blog_title_error=blog_title_error, blog_body=blog_body, blog_title=blog_title)
+    
 
     blogs = Blog.query.all()
 
@@ -55,21 +58,15 @@ def newpost():
 
 @app.route('/blog', methods=['POST', 'GET'])
 def blog():
-
+    blog_id = request.args.get('id')
     blogs = Blog.query.all()
+
+    if blog_id:
+        post = Blog.query.filter_by(id=blog_id).first()
+        return render_template("post.html", title=post.title, body=post.body)
 
     return render_template('blog.html', title="Build A Blog", blogs=blogs)
 
-
-@app.route('/delete-blog', methods=['POST', 'GET'])
-def delete_blogs():
-
-    blog_id = int(request.form['blog-id'])
-    blogs = Blog.query.get(blog_id)
-    db.session.delete(blogs)
-    db.session.commit()
-
-    return redirect('/blog')
 
 if __name__ == '__main__':
     app.run()

@@ -12,10 +12,10 @@
     <hr />
     
     <form method="POST" action="/delete-blog" style="display:inline-block;">
-        <h2><a href="/blog" method="get">{{new_blog.title}}</a></h2>
+        <h2><a href="/blog?id={{new_blog.id}}" method="get">{{new_blog.title}}</a></h2>
         <p>{{new_blog.body}}</p>
-        <input type="hidden" name="blog-id" value="{{blog.id}}"/>
-        <input type="submit" value="Delete!"/>
+        <input type="hidden" name="blog-id" value="{{blogs.id}}"/>
+        
     </form>
     {% endfor %}
 
