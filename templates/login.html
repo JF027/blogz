@@ -6,16 +6,20 @@
 
         <h1>Login</h1>
 
+        <p>If you don't have an account, you can <a href="/register">register</a> for one.</p>
+        <hr />
+
         <table>
             <tbody>
-                <tr>
-                    <td>
-                        <label for="username">Username</label>
+                <tr>   
+
+                    <td>     
+                        <label for="email">Email</label>
                     </td>
 
                     <td>
-                        <input type="text" name="username" id="username" value="{{username}}">
-                        <span class="error">{{usernameError}}</span>
+                        <input type="text" name="email" id="email" value="{{email}}">
+                        <span class="error">{{emailError}}</span>
                     </td>
                 </tr>
 
@@ -36,5 +40,7 @@
         <input type="submit" value="Login">
         
     </form>
+
+    <p class="error">{{not_registeredError}}</p>
 
 {% endblock content %}

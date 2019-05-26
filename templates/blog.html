@@ -3,7 +3,12 @@
 {% block content %}
 
     <h1>My Blogz!</h1>
-    <h2>{{Username}}</h2>
+
+    <br />
+    <span class="toplink">
+        <a href="/logout">Logout</a>
+    </span>
+    <span>{{session['email']}}</span>
     
     {% if blogs|length == 0 %}
     <p>No blogs yet</p>

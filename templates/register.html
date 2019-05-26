@@ -6,16 +6,20 @@
 
         <h1>Register</h1>
 
+        <p>If you already have an account, you can <a href="/login">login</a>.</p>
+        <hr />
+
         <table>
             <tbody>
-                <tr>
-                    <td>
-                        <label for="username">Username</label>
+                <tr>   
+
+                    <td>     
+                        <label for="email">Email</label>
                     </td>
 
                     <td>
-                        <input type="text" name="username" id="username" value="{{username}}">
-                        <span class="error">{{usernameError}}</span>
+                        <input type="text" name="email" id="email" value="{{email}}">
+                        <span class="error">{{emailError}}</span>
                     </td>
                 </tr>
 
@@ -34,24 +38,12 @@
                 <tr>
 
                     <td>
-                        <label for="password2">Verify Password</label>
+                        <label for="verify">Verify Password</label>
                     </td>
 
                     <td>
-                        <input type="password" name="password2" id="password2" value="{{password2}}">
-                        <span class="error">{{password2Error}}</span>
-                    </td>
-                </tr>
-
-                <tr>   
-
-                    <td>     
-                        <label for="email">Email</label>
-                    </td>
-
-                    <td>
-                        <input type="text" name="email" id="email" value="{{email}}">
-                        <span class="error">{{emailError}}</span>
+                        <input type="password" name="verify" id="verify" value="{{password2}}">
+                        <span class="error">{{verifyError}}</span>
                     </td>
                 </tr>
             </tbody>
@@ -60,5 +52,7 @@
         <input type="submit" value="Register">
         
     </form>
+
+    <p class="error">{{duplicateError}}</p>
 
 {% endblock content %}
