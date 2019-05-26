@@ -128,7 +128,7 @@ def register():
 
 @app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
-
+    owner = User.query.filter_by(email=session['email']).first()
     if request.method == 'POST':
         blog_title = request.form['blog_title']
         blog_body = request.form['blog_body']
